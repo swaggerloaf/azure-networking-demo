@@ -11,7 +11,7 @@ az account set --subscription <sub id>
 
 ```
 az network vnet create \
-    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --resource-group learn-ef2246dc-435d-4abf-aba2-e7f908323888 \
     --name SalesVNet \
     --address-prefix 10.1.0.0/16 \
     --subnet-name Apps \
@@ -49,7 +49,7 @@ az network vnet list --output table
 
 ```
 az vm create \
-    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --resource-group learn-ef2246dc-435d-4abf-aba2-e7f908323888 \
     --no-wait \
     --name SalesVM \
     --location northeurope \
