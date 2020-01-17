@@ -28,3 +28,117 @@ az network vnet create \
     --subnet-prefix 10.3.1.0/24 \
     --location westeurope
 ```
+
+```
+az network vnet create \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --name ResearchVNet \
+    --address-prefix 10.3.0.0/16 \
+    --subnet-name Data \
+    --subnet-prefix 10.3.1.0/24 \
+    --location westeurope
+```
+
+```
+az network vnet list --output table
+```
+
+```
+az vm create \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --no-wait \
+    --name SalesVM \
+    --location northeurope \
+    --vnet-name SalesVNet \
+    --subnet Apps \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --admin-password <password>
+```
+
+```
+az vm create \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --no-wait \
+    --name MarketingVM \
+    --location northeurope \
+    --vnet-name MarketingVNet \
+    --subnet Apps \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --admin-password <password>
+ ```
+ 
+ 
+ ```
+ az vm create \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --no-wait \
+    --name ResearchVM \
+    --location westeurope \
+    --vnet-name ResearchVNet \
+    --subnet Data \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --admin-password <password>
+```
+
+```
+az vm list \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --show-details \
+    --query '[*].{Name:name, ProvisioningState:provisioningState, PowerState:powerState}' \
+    --output table
+```
+
+```
+az network vnet peering create \
+    --name SalesVNet-To-MarketingVNet \
+    --remote-vnet MarketingVNet \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --vnet-name SalesVNet \
+    --allow-vnet-access
+```
+ 
+```
+az network vnet peering create \
+    --name MarketingVNet-To-SalesVNet \
+    --remote-vnet SalesVNet \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --vnet-name MarketingVNet \
+    --allow-vnet-access
+```
+
+
+```
+az network vnet peering create \
+    --name MarketingVNet-To-ResearchVNet \
+    --remote-vnet ResearchVNet \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --vnet-name MarketingVNet \
+    --allow-vnet-access
+```
+
+```
+az network vnet peering create \
+    --name ResearchVNet-To-MarketingVNet \
+    --remote-vnet MarketingVNet \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --vnet-name ResearchVNet \
+    --allow-vnet-access
+```
+
+
+```
+az network vnet peering list \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --vnet-name SalesVNet \
+    --output table
+```
+
+```
+az network nic show-effective-route-table \
+    --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
+    --name SalesVMVMNic \
+    --output table
+```
