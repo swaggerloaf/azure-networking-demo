@@ -39,6 +39,10 @@ az network vnet create \
     --location westeurope
 ```
 
+Configured peering connections between the virtual networks to enable resources to communicate with each other. Your configuration used a hub and spoke topology. MarketingVNet was the hub, and SalesVNet and ResearchVNet were spokes.
+
+
+
 ```
 az network vnet list --output table
 ```
@@ -141,4 +145,20 @@ az network nic show-effective-route-table \
     --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
     --name SalesVMVMNic \
     --output table
+```
+
+```
+az vm list \
+    --resource-group learn-ef2246dc-435d-4abf-aba2-e7f908323888 \
+    --query "[*].{Name:name, PrivateIP:privateIps, PublicIP:publicIps}" \
+    --show-details \
+    --output table
+```
+
+```
+ssh -o StrictHostKeyChecking=no azureuser@<SalesVM public IP>
+```
+
+```
+ssh -o StrictHostKeyChecking=no azureuser@<ResearchVM private IP>
 ```
