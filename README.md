@@ -9,7 +9,7 @@ az account list
 az account set --subscription <sub id>
 </code>
 
-<code>
+<raw>
 az network vnet create \
     --resource-group learn-81f90fe2-afdc-4ca0-9f6d-48d381bdb382 \
     --name SalesVNet \
@@ -17,7 +17,7 @@ az network vnet create \
     --subnet-name Apps \
     --subnet-prefix 10.1.1.0/24 \
     --location northeurope
-</code>
+</raw>
 
 <code>
 az network vnet create \
