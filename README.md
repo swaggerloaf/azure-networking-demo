@@ -162,3 +162,34 @@ ssh -o StrictHostKeyChecking=no azureuser@<SalesVM public IP>
 ```
 ssh -o StrictHostKeyChecking=no azureuser@<ResearchVM private IP>
 ```
+got this
+The bottle needs the Xcode CLT to be installed.
+when running 
+brew upgrade azure-cli
+
+tried 
+brew install gcc
+but fails 
+gcc cannot be built with any available compilers.
+
+brew config
+showed
+CLT: N/A
+
+xcode-select --install
+
+brew config 
+showed
+CLT: 11.3.1.0.1.1576735732
+
+brew install gcc
+
+then 
+brew upgrade azure-cli
+
+azure-cli 2.0.77 -> 2.0.80
+==> Upgrading azure-cli
+==> Installing dependencies for azure-cli: python@3.8
+==> Installing azure-cli dependency: python@3.8
+==> Downloading https://homebrew.bintray.com/bottles/python@3.8-3.8.1.catalina.bottle.tar.gz
+
